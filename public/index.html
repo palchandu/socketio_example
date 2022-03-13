@@ -1,0 +1,16 @@
+<script src="../socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('/');
+    //recieve data send from server phase 1
+    socket.on('from_server_to_client', function(data) {
+        console.log('Got Message:', data.message);
+    });
+    // Send data to server phase 2
+    socket.emit('from_client_to_server',{message:"Information send from client to server."})
+
+    // Count connected users
+
+    socket.on('stats',function(data){
+        console.log('Connected clients:', data.numClients);
+    })
+</script>
